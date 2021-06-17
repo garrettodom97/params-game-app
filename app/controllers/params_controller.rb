@@ -27,4 +27,20 @@ class ParamsController < ApplicationController
       render json: "No number given!"
     end
   end
+
+  def number_game_segments
+    answer = 36
+    num = params[:number].to_i
+    if num
+      if num > answer
+        render json: "Too high! Guess again!"
+      elsif num < answer
+        render json: "Too low! Guess again!"
+      else
+        render json: "That's the correct number! Congrats!"
+      end
+    else
+      render json: "No number given!"
+    end
+  end
 end
