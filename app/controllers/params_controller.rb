@@ -14,33 +14,29 @@ class ParamsController < ApplicationController
 
   def number_game
     answer = 36
-    num = params["number"]
+    num = params[:number]
     if num
       if num.to_i > answer
-        render json: "Too high! Guess again!"
+        render json: { message: "Too high! Guess again!" }
       elsif num.to_i < answer
-        render json: "Too low! Guess again!"
+        render json: { messsage: "Too low! Guess again!" }
       else
-        render json: "That's the correct number! Congrats!"
+        render json: { message: "That's the correct number! Congrats!" }
       end
     else
-      render json: "No number given!"
+      render json: { message: "No number given!" }
     end
   end
 
-  def number_game_segments
-    answer = 36
-    num = params[:number].to_i
-    if num
-      if num > answer
-        render json: "Too high! Guess again!"
-      elsif num < answer
-        render json: "Too low! Guess again!"
-      else
-        render json: "That's the correct number! Congrats!"
-      end
+  def login
+    correct_username = "hugh"
+    correct_password = "swordfish"
+    username = params[:username]
+    password = params[:password]
+    if username == correct_username && password == correct_password
+      render json: { message: "Valid Credentials" }
     else
-      render json: "No number given!"
+      render json: { message: "Invalid Credentials" }
     end
   end
 end
